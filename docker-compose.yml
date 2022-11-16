@@ -3,9 +3,11 @@ version: '3.4'
 # envs https://medium.com/softonic-eng/docker-compose-from-development-to-production-88000124a57c
 
 services:
-
   rich-puppeteer:
-    image: damoeb/rich-rss:puppeteer-0.1
+    # image: damoeb/rich-rss:puppeteer-0.1
+    build:
+      context: https://github.com/cesaryuan/rich-rss.git#master:packages/server-puppeteer
+      dockerfile: Dockerfile
     restart: always
     security_opt:
       - seccomp=chrome.json
@@ -13,7 +15,10 @@ services:
       - puppeteer
 
   rss-proxy:
-    image: damoeb/rss-proxy:2.0.0-beta
+    # image: damoeb/rss-proxy:2.0.0-beta
+    build:
+      context: ./rss-proxy
+      dockerfile: Dockerfile
     restart: always
     depends_on:
       - rich-puppeteer
