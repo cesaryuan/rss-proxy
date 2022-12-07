@@ -17,7 +17,7 @@ services:
   rss-proxy:
     # image: damoeb/rss-proxy:2.0.0-beta
     build:
-      context: ./rss-proxy
+      context: https://github.com/cesaryuan/rss-proxy.git#master
       dockerfile: Dockerfile
     restart: always
     depends_on:
